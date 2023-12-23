@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
-  const [movieDetails, setMovieDetails] = useState(null);
+  const [movieDetails, setMovieDetails] = useState({});
 
   useEffect(() => {
     const getMovieDetails = async () => {
@@ -18,7 +18,14 @@ const MovieDetails = () => {
     movieId && getMovieDetails();
   }, [movieId]);
 
-  return <div>{movieDetails.title}</div>;
+  return (
+    <div>
+      <img
+        src={`https://image.tmdb.org/t/p/w300${movieDetails.poster_path}`}
+        alt={movieDetails.title}
+      />
+    </div>
+  );
 };
 
 export default MovieDetails;

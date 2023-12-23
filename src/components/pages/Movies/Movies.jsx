@@ -31,7 +31,7 @@ const Movies = () => {
       <Search submit={submit} />
 
       {movies.map(movie => (
-        <Link to={`movies/${movie.id}`} key={movie.id}>
+        <Link to={`/movies/${movie.id}`} key={movie.id}>
           {movie.title}
         </Link>
       ))}
