@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
-const Search = () => {
+const Search = ({ submit }) => {
   const [inputData, setInputData] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
+    submit(inputData);
   };
 
   const handleChangeInput = ({ target: { value } }) => {
@@ -13,7 +14,7 @@ const Search = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <button c type="submit">
+      <button type="submit">
         <span>Search</span>
       </button>
 
