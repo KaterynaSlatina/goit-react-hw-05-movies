@@ -20,13 +20,12 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <img
-        src={
-          movieDetails.poster_path &&
-          `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`
-        }
-        alt={movieDetails.title}
-      />
+      {movieDetails && movieDetails.poster_path && (
+        <img
+          src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
+          alt={movieDetails.title}
+        />
+      )}
     </div>
   );
 };
