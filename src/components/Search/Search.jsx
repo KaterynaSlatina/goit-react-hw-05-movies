@@ -18,13 +18,13 @@ const Search = ({ submit }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    submit(inputData);
-  };
-
-  const handleChangeInput = ({ target: { value } }) => {
     if (inputData.trim() !== '') {
       setSearchParams({ query: inputData });
     }
+    // submit(inputData);
+  };
+
+  const handleChangeInput = ({ target: { value } }) => {
     setInputData(value);
   };
 
