@@ -13,19 +13,31 @@ const Search = ({ submit }) => {
     const query = searchParams.get('query');
     if (query) {
       fetchSearchMovies(query).then(setFiles);
+      setInputData(localStorage.getItem('searchInputData'));
     }
   }, [searchParams]);
 
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      localStorage.removeItem('searchQuery');
+      localStorage.removeItem('searchInputData');
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, []);
+
   const handleSubmit = e => {
     e.preventDefault();
+    submit(inputData);
     if (inputData.trim() !== '') {
       setSearchParams({ query: inputData });
+      localStorage.setItem('searchQuery', inputData);
     }
-    // submit(inputData);
   };
 
   const handleChangeInput = ({ target: { value } }) => {
     setInputData(value);
+    localStorage.setItem('searchQuery', inputData);
   };
 
   return (
