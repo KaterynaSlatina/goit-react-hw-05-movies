@@ -14,3 +14,10 @@ input {
   border-radius: 5px;
   margin-right: 5px;
 }
+
+.searchMoviesList {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 7px;
+  padding-top: 7px;
+}

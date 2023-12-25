@@ -1,6 +1,7 @@
 import { fetchReviews } from 'components/fetchApi';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import css from './Reviews.module.css';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -18,8 +19,15 @@ const Reviews = () => {
     movieId && getReviews();
   }, [movieId]);
 
+  const goBack = () => {
+    window.history.back();
+  };
+
   return (
     <div>
+      <button onClick={goBack} className={css.btnGoBack}>
+        Go back
+      </button>
       {reviews && reviews.length > 0 ? (
         reviews.map(review => (
           <li key={review.id}>

@@ -41,7 +41,7 @@ const MovieDetails = () => {
             Math.floor(movieDetails.vote_average) * 10}
           %
         </p>
-        <h3>Overview</h3>
+        {/* <h3>Overview</h3> */}
         <p> {movieDetails.overview}</p>
         {movieDetails && movieDetails.poster_path && (
           <img
@@ -51,7 +51,7 @@ const MovieDetails = () => {
           />
         )}
 
-        <h3>Genres</h3>
+        <h3>Genres:</h3>
         <p>
           {movieDetails.genres &&
             movieDetails.genres.map(genre => (
@@ -60,13 +60,17 @@ const MovieDetails = () => {
         </p>
       </div>
       <div>
-        <p>Additional information</p>
-        <ul>
-          <li>
-            <Link to="cast">Cast</Link>
+        <p>Additional information:</p>
+        <ul className={css.addInfo}>
+          <li className={css.addInfoItems}>
+            <Link className={css.color} to="cast">
+              Cast
+            </Link>
           </li>
-          <li>
-            <Link to="reviews">Reviews</Link>
+          <li className={css.addInfoItems}>
+            <Link className={css.color} to="reviews">
+              Reviews
+            </Link>
           </li>
         </ul>
       </div>

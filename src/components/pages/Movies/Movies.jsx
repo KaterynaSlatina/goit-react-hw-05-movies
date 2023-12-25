@@ -2,6 +2,7 @@ import Search from 'components/Search/Search';
 import { fetchSearchMovies } from 'components/fetchApi';
 import React, { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+// import css from './Movies.module.css';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -32,7 +33,11 @@ const Movies = () => {
       <Search submit={submit} />
 
       {movies.map(movie => (
-        <Link to={`/movies/${movie.id}`} key={movie.id}>
+        <Link
+          // className={css.moviesList}
+          to={`/movies/${movie.id}`}
+          key={movie.id}
+        >
           {movie.title}
         </Link>
       ))}

@@ -16,7 +16,8 @@ code {
     monospace;
 }
 
-ul {
+ul,
+li {
   text-decoration: none;
   list-style-type: none;
 }
