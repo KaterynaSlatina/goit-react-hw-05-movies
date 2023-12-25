@@ -1,11 +1,12 @@
 import Search from 'components/Search/Search';
 import { fetchSearchMovies } from 'components/fetchApi';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
-  const [query, setQuery] = useState('');
+  // const [query, setQuery] = useState('');
+  const [query, setQuery] = useSearchParams();
 
   const getSearchMovies = async searchQuery => {
     try {

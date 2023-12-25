@@ -4,13 +4,13 @@ import { useParams } from 'react-router-dom';
 
 const Cast = () => {
   const { movieId } = useParams();
-  const [cast, setCast] = useState([]);
+  const [casts, setCasts] = useState([]);
 
   useEffect(() => {
     const getCast = async () => {
       try {
         const data = await fetchCast(movieId);
-        setCast(data);
+        setCasts(data);
       } catch (error) {
         console.error(error);
       }
@@ -20,10 +20,10 @@ const Cast = () => {
 
   return (
     <div>
-      {cast.map(cast => (
+      {casts.map(cast => (
         <li key={cast.cast_id}>
           <img
-            src={`https://image.tmdb.org/t/p/w500/${cast.profile_path}`}
+            src={`https://image.tmdb.org/t/p/w200/${cast.profile_path}`}
             alt=""
           />
           <p>{cast.name}</p>
