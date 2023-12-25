@@ -15,7 +15,7 @@ const Search = ({ submit }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <button type="submit">
+      <button className={css.btnSearch} type="submit">
         <span>Search</span>
       </button>
 
