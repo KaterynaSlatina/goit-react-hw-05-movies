@@ -7,7 +7,6 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState({});
   const location = useLocation();
-  // const backLink = location.state?.from ?? '/';
 
   const navigate = useNavigate();
 
@@ -36,7 +35,7 @@ const MovieDetails = () => {
           {movieDetails.title}({movieDetails.release_date})
         </h2>
         <p>
-          User Score:{' '}
+          User Score:
           {movieDetails.vote_average &&
             Math.floor(movieDetails.vote_average) * 10}
           %

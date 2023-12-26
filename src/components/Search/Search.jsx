@@ -13,7 +13,6 @@ const Search = ({ submit }) => {
     const query = searchParams.get('query');
     if (query) {
       fetchSearchMovies(query).then(setFiles);
-      setInputData(localStorage.getItem('searchInputData'));
     }
   }, [searchParams]);
 
@@ -22,14 +21,11 @@ const Search = ({ submit }) => {
     submit(inputData);
     if (inputData.trim() !== '') {
       setSearchParams({ query: inputData });
-      localStorage.setItem('searchQuery', inputData);
-      localStorage.setItem('searchInputData', inputData);
     }
   };
 
   const handleChangeInput = ({ target: { value } }) => {
     setInputData(value);
-    localStorage.setItem('searchInputData', value);
   };
 
   return (
