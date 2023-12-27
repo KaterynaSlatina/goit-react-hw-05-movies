@@ -19,15 +19,8 @@ const Cast = () => {
     movieId && getCast();
   }, [movieId]);
 
-  const goBack = () => {
-    window.history.back();
-  };
-
   return (
     <div>
-      <button onClick={goBack} className={css.btnGoBack}>
-        Go back
-      </button>
       {casts.map(cast => (
         <li key={cast.cast_id}>
           {cast.profile_path ? (

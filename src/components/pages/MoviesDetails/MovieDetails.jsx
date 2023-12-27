@@ -1,20 +1,18 @@
 import { getMovieId } from 'components/fetchApi';
 import { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
-import css from './MovieDetails.module.css';
+import { useParams } from 'react-router-dom';
+import MovieMarkup from 'components/MovieMarkup/MovieMarkup';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
-  const [movieDetails, setMovieDetails] = useState({});
-  const location = useLocation();
-
-  const navigate = useNavigate();
+  const [movieDetail, setMovieDetail] = useState({});
 
   useEffect(() => {
     const getMovieDetails = async () => {
       try {
         const data = await getMovieId(movieId);
-        setMovieDetails(data);
+        console.log('Response data-details', data);
+        setMovieDetail(data);
       } catch (error) {
         console.error(error);
       }
@@ -22,59 +20,7 @@ const MovieDetails = () => {
     movieId && getMovieDetails();
   }, [movieId]);
 
-  const handleClick = () => {
-    navigate(location.state?.from ?? '/');
-  };
-  return (
-    <div>
-      <button className={css.btnGoBack} onClick={handleClick}>
-        Go back
-      </button>
-      <div className={css.movieInfo}>
-        <h2>
-          {movieDetails.title}({movieDetails.release_date})
-        </h2>
-        <p>
-          User Score:
-          {movieDetails.vote_average &&
-            Math.floor(movieDetails.vote_average) * 10}
-          %
-        </p>
-        {/* <h3>Overview</h3> */}
-        <p> {movieDetails.overview}</p>
-        {movieDetails && movieDetails.poster_path && (
-          <img
-            className={css.posterImg}
-            src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
-            alt={movieDetails.title}
-          />
-        )}
-
-        <h3>Genres:</h3>
-        <p>
-          {movieDetails.genres &&
-            movieDetails.genres.map(genre => (
-              <li key={genre.id}>{genre.name}</li>
-            ))}
-        </p>
-      </div>
-      <div>
-        <p>Additional information:</p>
-        <ul className={css.addInfo}>
-          <li className={css.addInfoItems}>
-            <Link className={css.color} to="cast">
-              Cast
-            </Link>
-          </li>
-          <li className={css.addInfoItems}>
-            <Link className={css.color} to="reviews">
-              Reviews
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </div>
-  );
+  return <MovieMarkup movieDetail={movieDetail} />;
 };
 
 export default MovieDetails;
