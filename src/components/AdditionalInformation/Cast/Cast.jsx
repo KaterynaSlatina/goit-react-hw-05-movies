@@ -1,7 +1,7 @@
 import { fetchCast } from 'components/fetchApi';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { CastItem, CastList } from './Cast.styled';
+import { CastItem, CastList, CastText, NoImg } from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -31,10 +31,10 @@ const Cast = () => {
               height={300}
             />
           ) : (
-            <div>No image</div>
+            <NoImg>No image</NoImg>
           )}
-          <p>Actor:{cast.name}</p>
-          <p>Character: {cast.character}</p>
+          <CastText>Actor:{cast.name}</CastText>
+          <CastText>Character: {cast.character}</CastText>
         </CastItem>
       ))}
     </CastList>

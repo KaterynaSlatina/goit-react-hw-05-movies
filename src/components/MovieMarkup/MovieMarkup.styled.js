@@ -45,3 +45,10 @@ export const GoBackLink = styled(Link)`
     transition: 0.3s;
   }
 `;
+
+export const MovieImg = styled.div`
+  text-align: center;
+`;
+export const MovieTitle = styled.h2`
+  text-align: center;
+`;

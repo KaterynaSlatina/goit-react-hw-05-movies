@@ -5,6 +5,8 @@ import {
   GoBackLink,
   LinkList,
   LinkStyled,
+  MovieImg,
+  MovieTitle,
 } from './MovieMarkup.styled';
 
 const MovieMarkup = ({ propMovieDetail }) => {
@@ -16,10 +18,11 @@ const MovieMarkup = ({ propMovieDetail }) => {
   return (
     <div>
       <GoBackLink to={backLink.current}>Go back</GoBackLink>
+
       <div>
-        <h2>
+        <MovieTitle>
           {title}({release_date})
-        </h2>
+        </MovieTitle>
         <p>
           <b>User Score:</b>
           {vote_average && Math.floor(vote_average) * 10}%
@@ -30,6 +33,9 @@ const MovieMarkup = ({ propMovieDetail }) => {
           {genres && genres.map(genre => <li key={genre.id}>{genre.name}</li>)}
         </GenresList>
         <p> {overview}</p>
+      </div>
+
+      <MovieImg>
         {propMovieDetail && poster_path && (
           <img
             src={`https://image.tmdb.org/t/p/w500${poster_path}`}
@@ -38,7 +44,8 @@ const MovieMarkup = ({ propMovieDetail }) => {
             height={400}
           />
         )}
-      </div>
+      </MovieImg>
+
       <h3>Additional information:</h3>
       <LinkList>
         <LinkStyled to="cast">Cast</LinkStyled>
