@@ -20,7 +20,7 @@ const MovieDetails = () => {
     movieId && getMovieDetails();
   }, [movieId]);
 
-  return <MovieMarkup movieDetail={movieDetail} />;
+  return <MovieMarkup propMovieDetail={movieDetail} />;
 };
 
 export default MovieDetails;

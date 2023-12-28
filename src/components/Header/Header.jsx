@@ -1,24 +1,17 @@
-import { Link, useLocation } from 'react-router-dom';
-import css from './Header.module.css';
+import { MenuList, MenuListItem } from './Header.styled';
 
 const Header = () => {
-  const location = useLocation();
-  const isHome = location.pathname === '/';
   return (
     <header>
       <nav>
-        <ul className={css.header}>
+        <MenuList>
           <li>
-            <Link className={isHome ? css.active : ''} to="/">
-              Home
-            </Link>
+            <MenuListItem to="/">Home</MenuListItem>
           </li>
           <li>
-            <Link className={!isHome ? css.active : ''} to="/movies">
-              Movies
-            </Link>
+            <MenuListItem to="/movies">Movies</MenuListItem>
           </li>
-        </ul>
+        </MenuList>
       </nav>
     </header>
   );

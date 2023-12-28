@@ -1,48 +1,50 @@
-import css from 'components/pages/MoviesDetails/MovieDetails.module.css';
-import { useNavigate, useLocation, NavLink, Outlet } from 'react-router-dom';
-import { Suspense } from 'react';
+import { useLocation, Outlet } from 'react-router-dom';
+import { Suspense, useRef } from 'react';
+import {
+  GenresList,
+  GoBackLink,
+  LinkList,
+  LinkStyled,
+} from './MovieMarkup.styled';
 
-const MovieMarkup = ({ movieDetail }) => {
-  const navigate = useNavigate();
+const MovieMarkup = ({ propMovieDetail }) => {
   const location = useLocation();
-
-  const handleClick = () => {
-    navigate(location.state?.from ?? '/');
-  };
+  const backLink = useRef(location.state?.from ?? '/');
 
   const { title, release_date, vote_average, overview, poster_path, genres } =
-    movieDetail;
+    propMovieDetail;
   return (
     <div>
-      <button className={css.btnGoBack} onClick={handleClick}>
-        Go back
-      </button>
-      <div className={css.movieInfo}>
+      <GoBackLink to={backLink.current}>Go back</GoBackLink>
+      <div>
         <h2>
           {title}({release_date})
         </h2>
         <p>
-          User Score:
+          <b>User Score:</b>
           {vote_average && Math.floor(vote_average) * 10}%
         </p>
 
+        <GenresList>
+          <b>Genres:</b>
+          {genres && genres.map(genre => <li key={genre.id}>{genre.name}</li>)}
+        </GenresList>
         <p> {overview}</p>
-        {movieDetail && poster_path && (
+        {propMovieDetail && poster_path && (
           <img
-            className={css.posterImg}
             src={`https://image.tmdb.org/t/p/w500${poster_path}`}
             alt={title}
+            width={300}
+            height={400}
           />
         )}
-
-        <h3>Genres:</h3>
-        <p>
-          {genres && genres.map(genre => <li key={genre.id}>{genre.name}</li>)}
-        </p>
       </div>
-      <NavLink to="cast">Cast...</NavLink>
-      <NavLink to="reviews">Reviews...</NavLink>
-      <Suspense fallback={<div>Loading subpage....</div>}>
+      <h3>Additional information:</h3>
+      <LinkList>
+        <LinkStyled to="cast">Cast</LinkStyled>
+        <LinkStyled to="reviews">Reviews</LinkStyled>
+      </LinkList>
+      <Suspense fallback={<div>Loading....</div>}>
         <Outlet />
       </Suspense>
     </div>

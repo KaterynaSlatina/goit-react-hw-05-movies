@@ -1,15 +1,15 @@
-import css from '../pages/Home/Home.module.css';
-import { Link } from 'react-router-dom';
+import { MovieList } from 'components/pages/Home/Home.styled';
+import { MovieLink } from './MoviesList.styled';
 
 const MoviesList = ({ movies }) => {
   return (
-    <ul className={css.homeMovies}>
+    <MovieList>
       {movies.map(movie => (
-        <Link to={`movies/${movie.id}`} key={movie.id}>
+        <MovieLink to={`movies/${movie.id}`} key={movie.id}>
           {movie.title}
-        </Link>
+        </MovieLink>
       ))}
-    </ul>
+    </MovieList>
   );
 };
 
