@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useSearchParams, useLocation, Link } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 import { fetchSearchMovies } from 'components/fetchApi';
-import css from './Search.module.css';
+import {
+  ButtonSearch,
+  FormStyled,
+  InputStyled,
+  SearchedLink,
+  SearchedMovies,
+} from './Search.styled';
 
 const Search = ({ submit }) => {
   const [inputData, setInputData] = useState('');
@@ -34,12 +40,12 @@ const Search = ({ submit }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <button className={css.btnSearch} type="submit">
+      <FormStyled onSubmit={handleSubmit}>
+        <ButtonSearch type="submit">
           <span>Search</span>
-        </button>
+        </ButtonSearch>
 
-        <input
+        <InputStyled
           name="inputData"
           value={inputData}
           onChange={handleChangeInput}
@@ -48,15 +54,15 @@ const Search = ({ submit }) => {
           autoFocus
           placeholder="Search movies"
         />
-      </form>
+      </FormStyled>
       {files.length > 0 && (
         <ul>
           {files.map(({ title, id }) => (
-            <li className={css.searchMoviesList} key={id}>
-              <Link to={`/movies/${id}`} state={{ from: location }}>
+            <SearchedMovies key={id}>
+              <SearchedLink to={`/movies/${id}`} state={{ from: location }}>
                 {title}
-              </Link>
-            </li>
+              </SearchedLink>
+            </SearchedMovies>
           ))}
         </ul>
       )}

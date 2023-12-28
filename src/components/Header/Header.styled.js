@@ -24,6 +24,6 @@ export const MenuListItem = styled(NavLink)`
     color: aliceblue;
     padding: 5px 5px 5px 5px;
     border-radius: 5px;
-    transition: 0.4 sec;
+    transition: 0.3s;
   }
 `;

@@ -9,6 +9,6 @@ export const MovieLink = styled(Link)`
   &:hover {
     color: darkblue;
     font-size: 20px;
-    transition: 0.3sec;
+    transition: 0.3s;
   }
 `;

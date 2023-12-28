@@ -21,7 +21,7 @@ const Home = () => {
 
   return (
     <>
-      <TitleTrending>Trending today</TitleTrending>
+      <TitleTrending>Trending movies today</TitleTrending>
 
       <MoviesList movies={movies} />
     </>
